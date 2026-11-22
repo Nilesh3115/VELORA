@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VELORA — Fine Jewelry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- 1. HEADER -->
+<header class="header" id="header">
+  <div class="announce">
+    <button class="announce__arrow" id="annPrev" aria-label="Previous announcement"><i data-lucide="chevron-left"></i></button>
+    <p id="annText">Save 15% on your first order with code: <strong>WELCOME15</strong></p>
+    <button class="announce__arrow" id="annNext" aria-label="Next announcement"><i data-lucide="chevron-right"></i></button>
+  </div>
+  <div class="bar">
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><i data-lucide="menu"></i><span>Menu</span></button>
+    <a href="#" class="brand">VELORA</a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <button data-menu="collections" aria-expanded="false" aria-controls="menu-collections">Collections <i data-lucide="chevron-down"></i></button>
+      <button data-menu="earrings" aria-expanded="false" aria-controls="menu-earrings">Earrings <i data-lucide="chevron-down"></i></button>
+      <button data-menu="rings" aria-expanded="false" aria-controls="menu-rings">Rings <i data-lucide="chevron-down"></i></button>
+      <button data-menu="bracelets" aria-expanded="false" aria-controls="menu-bracelets">Bracelets <i data-lucide="chevron-down"></i></button>
+      <button data-menu="necklaces" aria-expanded="false" aria-controls="menu-necklaces">Necklaces <i data-lucide="chevron-down"></i></button>
+      <a href="#new" class="nav__link">Lookbook</a>
+    </nav>
+    <div class="bar__right">
+      <button id="searchBtn" aria-label="Search" aria-expanded="false" aria-controls="searchPanel"><i data-lucide="search"></i></button>
+      <a href="#" aria-label="Account"><i data-lucide="user"></i></a>
+      <a href="#" class="bag" aria-label="Bag"><i data-lucide="shopping-bag"></i><span id="bagCount">0</span></a>
+    </div>
+  </div>
+  <div class="megahost" id="megaHost"></div>
+  <div class="searchpanel" id="searchPanel">
+    <form id="searchForm" role="search"><i data-lucide="search"></i><input id="searchInput" type="search" placeholder="Search products, collections" aria-label="Search" autocomplete="off"><button type="button" id="searchClose" aria-label="Close search"><i data-lucide="x"></i></button></form>
+    <div class="results" id="searchResults" aria-live="polite"></div>
+  </div>
+</header>
+<div class="scrim" id="scrim"></div>
+<div class="drawer-scrim" id="drawerScrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Menu">
+  <div class="drawer__head"><a href="#" class="brand">VELORA</a><button id="drawerClose" aria-label="Close menu"><i data-lucide="x"></i></button></div>
+  <form class="drawer__search" id="drawerSearch" role="search"><i data-lucide="search"></i><input id="drawerInput" type="search" placeholder="Search products, collections" aria-label="Search" autocomplete="off"></form>
+  <div class="results" id="drawerResults" aria-live="polite"></div>
+  <nav class="acc" id="acc" aria-label="Mobile"></nav>
+  <div class="drawer__foot"><a href="#"><i data-lucide="user"></i> Account</a><a href="#"><i data-lucide="shopping-bag"></i> Bag</a></div>
+</aside>
+
+<div class="page" id="page">
+<!-- 2. HERO -->
+<section class="hero" id="hero">
+  <div class="hero__stage">
+    <div class="hero__slide is-active" data-slide="0">
+      <img class="hero__bg" src="https://aspire-demo-2.myshopify.com/cdn/shop/files/Rectangle_45377.jpg?v=1782983325&width=1200" alt="">
+      <div class="hero__shade"></div>
+      <div class="hero__card"><video autoplay loop muted playsinline preload="auto" poster="https://images.pexels.com/photos/1454171/pexels-photo-1454171.jpeg?auto=compress&cs=tinysrgb&w=800"><source src="https://aspire-demo-2.myshopify.com/cdn/shop/videos/c/vp/5d45ee5d014e420a830693a9bf6e0913/5d45ee5d014e420a830693a9bf6e0913.HD-1080p-3.3Mbps-91381077.mp4" type="video/mp4"></video></div>
+      <div class="hero__copy"><a href="#collections" class="explore">Explore <i data-lucide="arrow-up-right"></i></a><h1>Unforgettable Elegance</h1><p>Hand-finished gold pieces made to be worn daily and kept for a lifetime.</p></div>
+    </div>
+    <div class="hero__slide" data-slide="1">
+      <img class="hero__bg" src="https://aspire-demo-2.myshopify.com/cdn/shop/files/Rectangle_45378_1.jpg?v=1784024793&width=1000" alt="">
+      <div class="hero__shade"></div>
+      <div class="hero__card"><video autoplay loop muted playsinline preload="auto" poster="https://images.pexels.com/photos/265906/pexels-photo-265906.jpeg?auto=compress&cs=tinysrgb&w=800"><source src="https://aspire-demo-2.myshopify.com/cdn/shop/videos/c/vp/9d9efb9e5cf54c4998e4ca5a687b82fe/9d9efb9e5cf54c4998e4ca5a687b82fe.HD-1080p-2.5Mbps-91381227.mp4" type="video/mp4"></video></div>
+      <div class="hero__copy"><a href="#collections" class="explore">Explore <i data-lucide="arrow-up-right"></i></a><h1>Architectural Silhouettes</h1><p>Bold forms meet precision gold-smithing. Statement pieces with fluid balance and sculptural contrast.</p></div>
+    </div>
+    <div class="hero__slide" data-slide="2">
+      <img class="hero__bg" src="https://aspire-demo-2.myshopify.com/cdn/shop/files/Rectangle_45425.jpg?v=1784024863&width=1200" alt="">
+      <div class="hero__shade"></div>
+      <div class="hero__card"><video autoplay loop muted playsinline preload="auto" poster="https://images.pexels.com/photos/248077/pexels-photo-248077.jpeg?auto=compress&cs=tinysrgb&w=800"><source src="http://aspire-demo-2.myshopify.com/cdn/shop/videos/c/vp/6db114ba230943bbb3afe4ce0e8248ae/6db114ba230943bbb3afe4ce0e8248ae.HD-1080p-2.5Mbps-91381404.mp4" type="video/mp4"></video></div>
+      <div class="hero__copy"><a href="#collections" class="explore">Explore <i data-lucide="arrow-up-right"></i></a><h1>Crafted In Gold</h1><p>Recycled metals, shaped by hand in small batches and hallmarked for authenticity.</p></div>
+    </div>
+    <div class="hero__dots"><button class="is-active" aria-label="Slide 1"></button><button aria-label="Slide 2"></button><button aria-label="Slide 3"></button></div>
+  </div>
+</section>
+
+<!-- 3. QUOTE -->
+<section class="quote" id="about">
+  <p>“Life is <span class="quote__img"><img src="https://images.pexels.com/photos/1191531/pexels-photo-1191531.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hoop jewelry"></span> too short to wear ordinary <span class="quote__img"><img src="https://images.pexels.com/photos/1458867/pexels-photo-1458867.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Drop earrings"></span> jewelry”</p>
+</section>
+
+<!-- 4. CATEGORY SHOWCASE -->
+<section class="showcase" id="collections">
+  <div class="showcase__head"><h2 class="showcase__title">Explore The Edit</h2><p class="showcase__sub">Handcrafted pieces designed to complement your daily look</p></div>
+  <div class="category-scroll-area"><div class="showcase__track category-track" id="showcase"></div></div>
+  <div class="drag-cursor" id="dragCursor" aria-hidden="true">Drag</div>
+</section>
+
+<!-- 5. PARALLAX BANNERS -->
+<section class="parallax" id="parallax">
+  <div class="parallax__stage">
+    <article class="pbanner"><img class="pbanner__bg" src="https://images.pexels.com/photos/3912476/pexels-photo-3912476.jpeg?auto=compress&cs=tinysrgb&w=1600" alt=""><div class="pbanner__shade"></div><div class="pbanner__copy"><h2>Adapt Collection</h2><p>Fluid silhouettes and adjustable fits.</p><a class="btn btn--white" href="#">Shop now</a></div></article>
+    <article class="pbanner"><img class="pbanner__bg" src="https://images.pexels.com/photos/3094215/pexels-photo-3094215.jpeg?auto=compress&cs=tinysrgb&w=1600" alt=""><div class="pbanner__shade"></div><div class="pbanner__copy"><h2>Poise Collection</h2><p>Minimal lines, bold intent. Made for self-expression.</p><a class="btn btn--white" href="#">Shop now</a></div></article>
+  </div>
+</section>
+
+<!-- 6. BEST SELLERS -->
+<section class="products" id="best">
+  <div class="products__head"><h2>Best Sellers</h2><div class="products__tools"><div class="arrows"><button data-dir="-1" aria-label="Previous"><i data-lucide="arrow-left"></i></button><button data-dir="1" aria-label="Next"><i data-lucide="arrow-right"></i></button></div><a class="shopall" href="#">Shop All <i data-lucide="arrow-right"></i></a></div></div>
+  <div class="products__track" data-products="best"></div>
+</section>
+
+<!-- 7. MARQUEE -->
+<div class="marquee marquee--dark marquee--ltr">
+  <div class="marquee__group">
+    <span>✦ Free Worldwide Shipping</span><span>✦ Certified Recycled Gold</span><span>✦ 2-Year Warranty</span>
+  </div>
+</div>
+
+<!-- 8. TRIPLE BANNER -->
+<section class="triple">
+  <a class="tcard" href="#"><img src="https://images.pexels.com/photos/3586798/pexels-photo-3586798.jpeg?auto=compress&cs=tinysrgb&w=1200" alt=""><div class="tcard__copy"><small>Earrings</small><h3>Flora</h3><span class="btn btn--white">Shop now</span></div></a>
+  <a class="tcard" href="#"><img src="https://images.pexels.com/photos/3762800/pexels-photo-3762800.jpeg?auto=compress&cs=tinysrgb&w=1200" alt=""><div class="tcard__copy"><small>Earrings</small><h3>Einai</h3><span class="btn btn--white">Shop now</span></div></a>
+  <a class="tcard" href="#"><img src="https://images.pexels.com/photos/2697786/pexels-photo-2697786.jpeg?auto=compress&cs=tinysrgb&w=1200" alt=""><div class="tcard__copy"><small>Earrings</small><h3>Entelechy</h3><span class="btn btn--white">Shop now</span></div></a>
+</section>
+
+<!-- 9. SPLITS + REVERSE MARQUEE -->
+<section class="split">
+  <div class="split__img"><img src="https://images.pexels.com/photos/3361481/pexels-photo-3361481.jpeg?auto=compress&cs=tinysrgb&w=1600" alt=""></div>
+  <div class="split__panel"><img class="split__accent" src="https://images.pexels.com/photos/248077/pexels-photo-248077.jpeg?auto=compress&cs=tinysrgb&w=400" alt=""><small>Exclusive Capsule</small><h2>Inspired by a muse</h2><p>Inspired by a muse of timeless grace. A limited edition of sculpted gold.</p><a class="btn btn--gold" href="#">Shop exclusive</a></div>
+</section>
+<div class="marquee marquee--gold marquee--rtl">
+  <div class="marquee__group">
+    <span>Athens, GR</span><i data-lucide="leaf"></i><span>Velora</span><i data-lucide="flower-2"></i><span>Hand-crafted jewellery</span><i data-lucide="sprout"></i>
+  </div>
+</div>
+<section class="split split--rev">
+  <div class="split__panel"><img class="split__accent" src="https://images.pexels.com/photos/1413420/pexels-photo-1413420.jpeg?auto=compress&cs=tinysrgb&w=400" alt=""><small>Now open</small><h2>London</h2><p>Discover our full collection, explore new arrivals, and experience exclusive in-store moments — from curated capsule collections to private styling.</p><div class="split__btns"><a class="btn btn--gold" href="#">Visit us</a><a class="btn btn--ghost" href="#">Book an appointment</a></div></div>
+  <div class="split__img"><img src="https://images.pexels.com/photos/5370706/pexels-photo-5370706.jpeg?auto=compress&cs=tinysrgb&w=1600" alt=""></div>
+</section>
+
+<!-- 10. NEW ARRIVALS -->
+<section class="products" id="new">
+  <div class="products__head"><h2>New Arrivals</h2><div class="products__tools"><div class="arrows"><button data-dir="-1" aria-label="Previous"><i data-lucide="arrow-left"></i></button><button data-dir="1" aria-label="Next"><i data-lucide="arrow-right"></i></button></div><a class="shopall" href="#">Shop All <i data-lucide="arrow-right"></i></a></div></div>
+  <div class="products__track" data-products="new"></div>
+</section>
+
+<!-- 11. REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="reviews__track" id="reviewsTrack">
+    <div class="reviews__stage">
+      <div class="reviews__head"><span class="eyebrow">Customer reviews</span><h2>Loved by those who wear it</h2><p class="reviews__sub"><span class="rcard__stars">★★★★★</span> 4.9 average from over 2,000 verified reviews</p></div>
+      <div class="reviews__collage">
+      <article class="rcard rcard--sophia" style="--dx:0px;--dy:70px" data-s="0" data-e="0.12">
+        <img src="https://images.pexels.com/photos/1454171/pexels-photo-1454171.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="" loading="lazy">
+        <div class="rcard__body"><div class="rcard__stars" aria-label="Rated 5 out of 5">★★★★★</div><h3>Sophia Bennett</h3><p>The craftsmanship exceeded my expectations, with every detail beautifully refined. This necklace effortlessly complements any outfit, combining everyday luxury, elegance, and lasting comfort.</p></div>
+      </article>
+      <article class="rcard rcard--amelia" style="--dx:0px;--dy:90px" data-s="0.03" data-e="0.15">
+        <img src="https://images.pexels.com/photos/3586798/pexels-photo-3586798.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="" loading="lazy">
+        <div class="rcard__body"><div class="rcard__stars" aria-label="Rated 5 out of 5">★★★★★</div><h3>Amelia Foster</h3><p>The bracelet exceeded my expectations with its premium quality and refined finish. From elegant packaging to flawless craftsmanship, every detail felt luxurious, making it a cherished piece in my collection.</p></div>
+      </article>
+      <article class="rcard rcard--grace" style="--dx:0px;--dy:80px" data-s="0.1" data-e="0.22">
+        <img src="https://images.pexels.com/photos/5370706/pexels-photo-5370706.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="" loading="lazy">
+        <div class="rcard__body"><div class="rcard__stars" aria-label="Rated 5 out of 5">★★★★★</div><h3>Grace Mitchell</h3><p>Elegant, delicate and perfectly weighted. The chain catches the light beautifully and has quickly become the piece I reach for every single day.</p></div>
+      </article>
+      <article class="rcard rcard--harper" style="--dx:110%;--dy:0px" data-s="0.27" data-e="0.45">
+        <img src="https://images.pexels.com/photos/1191531/pexels-photo-1191531.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="" loading="lazy">
+        <div class="rcard__body"><div class="rcard__stars" aria-label="Rated 5 out of 5">★★★★★</div><h3>Harper Lewis</h3><p>I was impressed by the outstanding quality and elegant design. The ring fits perfectly, sparkles beautifully, and feels incredibly comfortable all day — perfect for both casual and formal occasions.</p></div>
+      </article>
+      <article class="rcard rcard--ava" style="--dx:-110%;--dy:0px" data-s="0.3" data-e="0.48">
+        <img src="https://images.pexels.com/photos/3762800/pexels-photo-3762800.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="" loading="lazy">
+        <div class="rcard__body"><div class="rcard__stars" aria-label="Rated 5 out of 5">★★★★★</div><h3>Ava Richardson</h3><p>Beautifully packaged earrings with an elegant finish, lightweight comfort, and timeless design.</p></div>
+      </article>
+      <article class="rcard rcard--isla" style="--dx:110%;--dy:0px" data-s="0.5" data-e="0.66">
+        <img src="https://images.pexels.com/photos/3094215/pexels-photo-3094215.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="" loading="lazy">
+        <div class="rcard__body"><div class="rcard__stars" aria-label="Rated 5 out of 5">★★★★★</div><h3>Isla Moore</h3><p>A statement piece that still feels effortless. The gold has a warm, rich tone and the clasp is sturdy and smooth.</p></div>
+      </article>
+      <article class="rcard rcard--chloe" style="--dx:-110%;--dy:0px" data-s="0.54" data-e="0.7">
+        <img src="https://images.pexels.com/photos/3361481/pexels-photo-3361481.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="" loading="lazy">
+        <div class="rcard__body"><div class="rcard__stars" aria-label="Rated 5 out of 5">★★★★★</div><h3>Chloe Hartley</h3><p>Gifted these to my sister and she has not taken them off since. Wonderful quality and thoughtful, premium presentation.</p></div>
+      </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. INSTAGRAM -->
+<section class="social-sec" id="social">
+  <div class="social-sec__head">
+    <a class="social-sec__badge" href="#"><i data-lucide="instagram"></i> @VELORAJEWELRY</a>
+    <h2>Follow our sparkling journey</h2>
+  </div>
+  <div class="igrid" id="igrid"></div>
+</section>
+
+<!-- 13. FOOTER -->
+<footer class="footer" id="footer">
+  <div class="footer__grid">
+    <div><h4>Shop</h4><a href="#">Best Sellers</a><a href="#">New Arrivals</a><a href="#">Gold</a><a href="#">Silver</a><a href="#">Resort Wear</a></div>
+    <div><h4>Collections</h4><a href="#">Earrings</a><a href="#">Necklaces</a><a href="#">Bracelets</a><a href="#">Rings</a><a href="#">Bangles</a></div>
+    <div><h4>Explore</h4><a href="#">The Journal</a><a href="#">Jewelry Care</a><a href="#">Lookbook</a></div>
+    <div><h4>Company</h4><a href="#">FAQ</a><a href="#">Shipping &amp; Returns</a><a href="#">Contact</a></div>
+    <div class="newsletter"><h4>Newsletter</h4>
+      <form id="newsForm" novalidate><input type="email" id="newsEmail" placeholder="Your email" aria-label="Your email"><button type="submit">Subscribe</button></form>
+      <p class="newsletter__msg" id="newsMsg" role="status"></p>
+      <div class="social"><a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a><a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a><a href="#" aria-label="Video"><i data-lucide="music-2"></i></a></div>
+      <a href="#" class="handle">@velorajewelry</a>
+    </div>
+  </div>
+  <div class="footer__meta">
+    <p>All product content for this demo was kindly provided by <a href="#">YSSO</a></p>
+    <button class="region">Canada (CAD $) <i data-lucide="chevron-down"></i></button>
+    <p class="small">© 2026, VELORA. All rights reserved. See our <a href="#">terms of use</a> and <a href="#">privacy notice</a>.<br>Powered by Shopify</p>
+  </div>
+</footer>
+</div><!-- /page -->
+
+<!-- Behind-the-page VELORA reveal: fixed stage sits under the page; the page lifts away as you reach the bottom -->
+<div class="curtain" id="curtain">
+  <div class="curtain__stage" id="curtainStage" aria-label="VELORA">
+    <img class="curtain__bg" src="https://images.pexels.com/photos/3094215/pexels-photo-3094215.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="">
+    <div class="curtain__shade"></div>
+    <div class="curtain__word" id="wordmark"><span id="wordmarkText">VELORA</span></div>
+    <p class="curtain__tag">Timeless jewelry crafted with exceptional artistry, premium materials, and enduring elegance to celebrate every meaningful moment beautifully.</p>
+  </div>
+</div>
+<button class="totop" id="toTop" aria-label="Back to top"><i data-lucide="arrow-up"></i></button>
+
+<div class="toast" id="toast" role="status"></div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="carousel.js"></script>
+<script src="animations.js"></script>
+<script src="header.js"></script>
+<script src="reviews.js"></script>
+<script src="social.js"></script>
+<script src="quickview.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

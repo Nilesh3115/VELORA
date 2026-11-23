@@ -1,5 +1,4 @@
 /* Data + product carousels + showcase */
-const PX = (id, w = 900) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
 const BEST = [
   ['Sculpted Hoop Earrings','$185',1191531,1458867],['Signet Chain Ring','$142',248077,265906],
   ['Rope Chain Necklace','$260',1454171,1721943],['Link Bracelet','$198',2735970,3266700],

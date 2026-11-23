@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collection — VELORA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- 1. HEADER -->
+<header class="header" id="header">
+  <div class="announce">
+    <button class="announce__arrow" id="annPrev" aria-label="Previous announcement"><i data-lucide="chevron-left"></i></button>
+    <p id="annText">Complimentary shipping on orders over $250</p>
+    <button class="announce__arrow" id="annNext" aria-label="Next announcement"><i data-lucide="chevron-right"></i></button>
+  </div>
+  <div class="bar">
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><i data-lucide="menu"></i><span>Menu</span></button>
+    <a href="index.html" class="brand" aria-label="VELORA home">VELORA</a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <button data-menu="collections" aria-expanded="false" aria-controls="menu-collections">Collections <i data-lucide="chevron-down"></i></button>
+      <button data-menu="earrings" aria-expanded="false" aria-controls="menu-earrings">Earrings <i data-lucide="chevron-down"></i></button>
+      <button data-menu="rings" aria-expanded="false" aria-controls="menu-rings">Rings <i data-lucide="chevron-down"></i></button>
+      <button data-menu="bracelets" aria-expanded="false" aria-controls="menu-bracelets">Bracelets <i data-lucide="chevron-down"></i></button>
+      <button data-menu="necklaces" aria-expanded="false" aria-controls="menu-necklaces">Necklaces <i data-lucide="chevron-down"></i></button>
+      <a href="index.html#new" class="nav__link">Lookbook</a>
+    </nav>
+    <div class="bar__right">
+      <button id="searchBtn" aria-label="Search" aria-expanded="false" aria-controls="searchPanel"><i data-lucide="search"></i></button>
+      <a href="#" aria-label="Account"><i data-lucide="user"></i></a>
+      <a href="#" class="bag" aria-label="Bag"><i data-lucide="shopping-bag"></i><span id="bagCount">0</span></a>
+    </div>
+  </div>
+  <div class="megahost" id="megaHost"></div>
+  <div class="searchpanel" id="searchPanel">
+    <form id="searchForm" role="search"><i data-lucide="search"></i><input id="searchInput" type="search" placeholder="Search products, collections" aria-label="Search" autocomplete="off"><button type="button" id="searchClose" aria-label="Close search"><i data-lucide="x"></i></button></form>
+    <div class="results" id="searchResults" aria-live="polite"></div>
+  </div>
+</header>
+<div class="scrim" id="scrim"></div>
+<div class="drawer-scrim" id="drawerScrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Menu">
+  <div class="drawer__head"><a href="index.html" class="brand" aria-label="VELORA home">VELORA</a><button id="drawerClose" aria-label="Close menu"><i data-lucide="x"></i></button></div>
+  <form class="drawer__search" id="drawerSearch" role="search"><i data-lucide="search"></i><input id="drawerInput" type="search" placeholder="Search products, collections" aria-label="Search" autocomplete="off"></form>
+  <div class="results" id="drawerResults" aria-live="polite"></div>
+  <nav class="acc" id="acc" aria-label="Mobile"></nav>
+  <div class="drawer__foot"><a href="#"><i data-lucide="user"></i> Account</a><a href="#"><i data-lucide="shopping-bag"></i> Bag</a></div>
+</aside>
+
+<div class="page" id="page">
+<main class="coll">
+  <section class="chero">
+    <img class="chero__bg" src="https://images.pexels.com/photos/3762800/pexels-photo-3762800.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="">
+    <div class="chero__shade"></div>
+    <div class="chero__copy">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Collection</span></nav>
+      <h1 id="cTitle">All Jewelry</h1>
+      <p id="cSub">Handcrafted pieces designed to complement your daily look.</p>
+    </div>
+  </section>
+  <section class="cwrap" id="shop">
+    <div class="ctoolbar">
+      <button type="button" class="ftrigger" id="fTrigger" aria-expanded="false" aria-controls="filterPanel"><span class="ficon" aria-hidden="true"></span>Filters<span class="fbadge" id="fBadge" hidden>0</span></button>
+      <p class="ccount" id="cCount" aria-live="polite">56 pieces</p>
+      <label class="csort"><span>Sort</span>
+        <select id="cSort" aria-label="Sort products"><option value="featured">Featured</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option><option value="newest">Newest</option></select>
+      </label>
+    </div>
+    <div class="cchips" id="cChips"></div>
+    <div class="clayout" id="cLayout">
+      <aside class="fpanel" id="filterPanel" aria-label="Filters"></aside>
+      <div class="cgrid" id="cGrid" aria-live="polite"></div>
+    </div>
+    <div class="cempty" id="cEmpty" hidden><h2>No pieces match these filters</h2><p>Try removing a filter or two to see more of the collection.</p><button type="button" class="btn btn--gold" id="cEmptyReset">Clear all filters</button></div>
+  </section>
+</main>
+<!-- 13. FOOTER -->
+<footer class="footer" id="footer">
+  <div class="footer__grid">
+    <div><h4>Shop</h4><a href="collection.html?flag=best">Best Sellers</a><a href="collection.html?flag=new">New Arrivals</a><a href="collection.html?metal=18k%20Gold%20Vermeil,Recycled%20Gold">Gold</a><a href="collection.html?metal=Sterling%20Silver">Silver</a><a href="collection.html?edit=Resort">Resort Wear</a></div>
+    <div><h4>Collections</h4><a href="collection.html?cat=Earrings">Earrings</a><a href="collection.html?cat=Necklaces">Necklaces</a><a href="collection.html?cat=Bracelets">Bracelets</a><a href="collection.html?cat=Rings">Rings</a><a href="collection.html?cat=Bangles">Bangles</a></div>
+    <div><h4>Explore</h4><a href="#">The Journal</a><a href="#">Jewelry Care</a><a href="index.html#new">Lookbook</a></div>
+    <div><h4>Company</h4><a href="#">FAQ</a><a href="#">Shipping &amp; Returns</a><a href="#">Contact</a></div>
+    <div class="newsletter"><h4>Newsletter</h4>
+      <form id="newsForm" novalidate><input type="email" id="newsEmail" placeholder="Your email" aria-label="Your email"><button type="submit">Subscribe</button></form>
+      <p class="newsletter__msg" id="newsMsg" role="status"></p>
+      <div class="social"><a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a><a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a><a href="#" aria-label="Video"><i data-lucide="music-2"></i></a></div>
+      <a href="#" class="handle">@velorajewelry</a>
+    </div>
+  </div>
+  <div class="footer__meta">
+    <p>All product content for this demo was kindly provided by <a href="#">YSSO</a></p>
+    <button class="region">Canada (CAD $) <i data-lucide="chevron-down"></i></button>
+    <p class="small">© 2026, VELORA. All rights reserved. See our <a href="#">terms of use</a> and <a href="#">privacy notice</a>.<br>Powered by Shopify</p>
+  </div>
+</footer>
+</div><!-- /page -->
+
+<!-- Behind-the-page VELORA reveal: fixed stage sits under the page; the page lifts away as you reach the bottom -->
+<div class="curtain" id="curtain">
+  <div class="curtain__stage" id="curtainStage" aria-label="VELORA">
+    <img class="curtain__bg" src="https://images.pexels.com/photos/3094215/pexels-photo-3094215.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="">
+    <div class="curtain__shade"></div>
+    <div class="curtain__word" id="wordmark"><span id="wordmarkText">VELORA</span></div>
+    <p class="curtain__tag">Timeless jewelry crafted with exceptional artistry, premium materials, and enduring elegance to celebrate every meaningful moment beautifully.</p>
+  </div>
+</div>
+<button class="totop" id="toTop" aria-label="Back to top"><i data-lucide="arrow-up"></i></button>
+
+<div class="toast" id="toast" role="status"></div>
+<div class="fscrim" id="fScrim"></div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="catalog.js"></script>
+<script src="animations.js"></script>
+<script src="header.js"></script>
+<script src="reviews.js"></script>
+<script src="quickview.js"></script>
+<script src="common.js"></script>
+<script src="collection.js"></script>
+</body>
+</html>

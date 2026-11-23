@@ -29,22 +29,24 @@ function fitWordmark(){
 addEventListener('orientationchange',()=>setTimeout(fitWordmark,250));
 if('ResizeObserver' in window){const st=document.getElementById('curtainStage');if(st)new ResizeObserver(()=>fitWordmark()).observe(st)}
 function scrollEffects(){
-  const hero=document.getElementById('hero'),slides=hero.querySelectorAll('.hero__slide'),dots=hero.querySelectorAll('.hero__dots button');
-  const par=document.getElementById('parallax'),pbs=par.querySelectorAll('.pbanner__bg');
+  const hero=document.getElementById('hero'),slides=hero?hero.querySelectorAll('.hero__slide'):[],dots=hero?hero.querySelectorAll('.hero__dots button'):[];
+  const par=document.getElementById('parallax'),pbs=par?par.querySelectorAll('.pbanner__bg'):[];
+  const cu=document.getElementById('curtain');
   let cur=-1;
   const clamp=v=>Math.max(0,Math.min(1,v));
   function tick(){
     const vh=innerHeight;
-    const cu=document.getElementById("curtain");if(cu){const cr=cu.getBoundingClientRect(),rv=clamp((vh-cr.top)/cr.height);cu.style.setProperty("--rv",rv.toFixed(3));cu.classList.toggle("is-live",rv>0)}
-    const r=hero.getBoundingClientRect(), p=clamp(-r.top/(hero.offsetHeight-vh));
-    const idx=p<.34?0:p<.67?1:2;
-    if(idx!==cur){cur=idx;slides.forEach((s,i)=>{const v=s.querySelector('video');if(!v)return;if(i===idx){const pr=v.play();if(pr&&pr.catch)pr.catch(()=>{})}else v.pause()});slides.forEach((s,i)=>s.classList.toggle('is-active',i===idx));dots.forEach((d,i)=>d.classList.toggle('is-active',i===idx))}
-    const start=[0,.34,.67][idx],len=idx===2?.33:.33, lp=clamp((p-start)/len);
-    const card=slides[idx].querySelector('.hero__card');
-    card.style.setProperty('--s',(.82+Math.sin(lp*Math.PI)*.0+lp*.28).toFixed(3));
-    const pr=par.getBoundingClientRect(), pp=clamp(-pr.top/(par.offsetHeight-vh));
-    pbs.forEach(b=>b.style.setProperty('--ps',(1+pp*.28).toFixed(3)));
+    if(cu){const cr=cu.getBoundingClientRect(),rv=clamp((vh-cr.top)/cr.height);cu.style.setProperty('--rv',rv.toFixed(3));cu.classList.toggle('is-live',rv>0)}
+    if(hero){
+      const r=hero.getBoundingClientRect(), p=clamp(-r.top/(hero.offsetHeight-vh));
+      const idx=p<.34?0:p<.67?1:2;
+      if(idx!==cur){cur=idx;slides.forEach((s,i)=>{const v=s.querySelector('video');if(!v)return;if(i===idx){const pr=v.play();if(pr&&pr.catch)pr.catch(()=>{})}else v.pause()});slides.forEach((s,i)=>s.classList.toggle('is-active',i===idx));dots.forEach((d,i)=>d.classList.toggle('is-active',i===idx))}
+      const start=[0,.34,.67][idx], lp=clamp((p-start)/.33);
+      const card=slides[idx].querySelector('.hero__card');
+      card.style.setProperty('--s',(.82+lp*.28).toFixed(3));
+    }
+    if(par){const pr=par.getBoundingClientRect(), pp=clamp(-pr.top/(par.offsetHeight-vh));pbs.forEach(b=>b.style.setProperty('--ps',(1+pp*.28).toFixed(3)))}
   }
   addEventListener('scroll',()=>requestAnimationFrame(tick),{passive:true});addEventListener('resize',tick);tick();
-  dots.forEach((d,i)=>d.onclick=()=>scrollTo({top:hero.offsetTop+(hero.offsetHeight-innerHeight)*[.1,.5,.9][i]}));
+  if(hero)dots.forEach((d,i)=>d.onclick=()=>scrollTo({top:hero.offsetTop+(hero.offsetHeight-innerHeight)*[.1,.5,.9][i]}));
 }

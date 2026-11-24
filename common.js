@@ -1,25 +1,25 @@
-/* Shared: media fallbacks, cart, toast, newsletter, wordmark fit */
+/* Shared: preloader, media fallbacks, toast, newsletter, wordmark fit */
+(function(){
+  const p=document.getElementById('velora-preloader');if(!p)return;
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,minShow=reduced?350:1900,t0=performance.now();
+  let gone=false;
+  function hide(){
+    if(gone)return;gone=true;
+    const wait=Math.max(0,minShow-(performance.now()-t0));          // let the A settle first
+    setTimeout(()=>{p.classList.add('is-done');setTimeout(()=>p.remove(),1300)},wait);
+  }
+  if(document.readyState==='complete')hide();else addEventListener('load',hide);
+  setTimeout(hide,3200);                                             // safe maximum if external media is slow
+})();
+
 document.addEventListener('error',e=>{
   const t=e.target;
   if(t.tagName==='IMG'){t.classList.add('img-fail');t.removeAttribute('alt')}
-  if(t.tagName==='SOURCE'){const v=t.closest('video');if(v&&v.poster){const im=document.createElement('img');im.src=v.poster;im.alt='';v.replaceWith(im)}}
+  if(t.tagName==='SOURCE'){const v=t.closest('video');if(v&&v.poster&&window.posterSwap)posterSwap(v)}
 },true);
 
-let bag=0,toastT;
-function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2200)}
-function addToBag(name,detail){
-  bag++;document.getElementById('bagCount').textContent=bag;
-  const c=document.querySelector('.bag');c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump');
-  toast(`${name}${detail?' ('+detail+')':''} added to your bag`);
-}
-document.addEventListener('click',e=>{
-  const b=e.target.closest('.pcard__add,[data-add]');if(!b)return;
-  addToBag(b.dataset.name);
-  if(b.hasAttribute('data-add')&&!b.classList.contains('is-added')){
-    const t=b.textContent;b.textContent='Added ✓';b.classList.add('is-added');
-    setTimeout(()=>{b.textContent=t;b.classList.remove('is-added')},1500);
-  }
-});
+let toastT;
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2400)}
 
 const newsForm=document.getElementById('newsForm');
 if(newsForm)newsForm.addEventListener('submit',e=>{

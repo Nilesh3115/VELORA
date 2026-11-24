@@ -10,6 +10,12 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div id="velora-preloader" role="status" aria-label="Loading VELORA">
+  <div class="pl__word" aria-hidden="true"><span class="pl__ch" style="--k:0"><span>V</span></span><span class="pl__ch" style="--k:1"><span>E</span></span><span class="pl__ch" style="--k:2"><span>L</span></span><span class="pl__ch" style="--k:3"><span>O</span></span><span class="pl__ch" style="--k:4"><span>R</span></span><span class="pl__ch" style="--k:5"><span>A</span></span></div>
+  <div class="pl__line" aria-hidden="true"></div>
+  <p class="pl__sub" aria-hidden="true">Fine Jewelry</p>
+</div>
+<noscript><style>#velora-preloader{display:none!important}</style></noscript>
 
 <!-- 1. HEADER -->
 <header class="header" id="header">
@@ -31,6 +37,7 @@
     </nav>
     <div class="bar__right">
       <button id="searchBtn" aria-label="Search" aria-expanded="false" aria-controls="searchPanel"><i data-lucide="search"></i></button>
+      <a href="#" class="wish" id="wishBtn" aria-label="Wishlist"><i data-lucide="heart"></i><span id="wishCount">0</span></a>
       <a href="#" aria-label="Account"><i data-lucide="user"></i></a>
       <a href="#" class="bag" aria-label="Bag"><i data-lucide="shopping-bag"></i><span id="bagCount">0</span></a>
     </div>
@@ -66,6 +73,10 @@
     <div class="ctoolbar">
       <button type="button" class="ftrigger" id="fTrigger" aria-expanded="false" aria-controls="filterPanel"><span class="ficon" aria-hidden="true"></span>Filters<span class="fbadge" id="fBadge" hidden>0</span></button>
       <p class="ccount" id="cCount" aria-live="polite">56 pieces</p>
+      <div class="cview" role="group" aria-label="Grid view">
+        <button type="button" data-view="2" aria-pressed="true" aria-label="2-column editorial view" title="2-Column Editorial View"><i data-lucide="columns-2"></i></button>
+        <button type="button" data-view="4" aria-pressed="false" aria-label="4-column dense grid view" title="4-Column Dense Grid View"><i data-lucide="layout-grid"></i></button>
+      </div>
       <label class="csort"><span>Sort</span>
         <select id="cSort" aria-label="Sort products"><option value="featured">Featured</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option><option value="newest">Newest</option></select>
       </label>
@@ -75,7 +86,12 @@
       <aside class="fpanel" id="filterPanel" aria-label="Filters"></aside>
       <div class="cgrid" id="cGrid" aria-live="polite"></div>
     </div>
-    <div class="cempty" id="cEmpty" hidden><h2>No pieces match these filters</h2><p>Try removing a filter or two to see more of the collection.</p><button type="button" class="btn btn--gold" id="cEmptyReset">Clear all filters</button></div>
+    <div class="cempty" id="cEmpty" hidden><h2>No pieces match your selected filters</h2><p>Try removing a filter or two to see more of the collection.</p><button type="button" class="btn btn--gold" id="cEmptyReset">Clear All Filters</button></div>
+    <div class="cmore" id="cMore" hidden>
+      <p id="cMoreTxt" aria-live="polite"></p>
+      <div class="cmore__bar" role="presentation"><span id="cMoreFill"></span></div>
+      <button type="button" class="btn btn--gold" id="cMoreBtn">Load More Pieces</button>
+    </div>
   </section>
 </main>
 <!-- 13. FOOTER -->
@@ -115,6 +131,7 @@
 <div class="fscrim" id="fScrim"></div>
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 <script src="catalog.js"></script>
+<script src="commerce.js"></script>
 <script src="animations.js"></script>
 <script src="header.js"></script>
 <script src="reviews.js"></script>

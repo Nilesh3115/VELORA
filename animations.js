@@ -28,7 +28,18 @@ function fitWordmark(){
 }
 addEventListener('orientationchange',()=>setTimeout(fitWordmark,250));
 if('ResizeObserver' in window){const st=document.getElementById('curtainStage');if(st)new ResizeObserver(()=>fitWordmark()).observe(st)}
+/* Hero: swap videos for a high-res static poster on phones, reduced-motion, data-saver, or when autoplay is blocked */
+function posterSwap(v){
+  if(!v||!v.parentNode||v.dataset.swapped)return;v.dataset.swapped='1';
+  const im=document.createElement('img');im.src=(v.getAttribute('poster')||'').replace('w=800','w=1200');im.alt='';im.className='hero__poster';
+  v.replaceWith(im);
+}
+function heroFallback(){
+  const low=matchMedia('(max-width:767px)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator.connection&&navigator.connection.saveData);
+  if(low)document.querySelectorAll('.hero__card video').forEach(posterSwap);
+}
 function scrollEffects(){
+  heroFallback();
   const hero=document.getElementById('hero'),slides=hero?hero.querySelectorAll('.hero__slide'):[],dots=hero?hero.querySelectorAll('.hero__dots button'):[];
   const par=document.getElementById('parallax'),pbs=par?par.querySelectorAll('.pbanner__bg'):[];
   const cu=document.getElementById('curtain');
@@ -40,7 +51,7 @@ function scrollEffects(){
     if(hero){
       const r=hero.getBoundingClientRect(), p=clamp(-r.top/(hero.offsetHeight-vh));
       const idx=p<.34?0:p<.67?1:2;
-      if(idx!==cur){cur=idx;slides.forEach((s,i)=>{const v=s.querySelector('video');if(!v)return;if(i===idx){const pr=v.play();if(pr&&pr.catch)pr.catch(()=>{})}else v.pause()});slides.forEach((s,i)=>s.classList.toggle('is-active',i===idx));dots.forEach((d,i)=>d.classList.toggle('is-active',i===idx))}
+      if(idx!==cur){cur=idx;slides.forEach((s,i)=>{const v=s.querySelector('video');if(!v)return;if(i===idx){const pr=v.play();if(pr&&pr.catch)pr.catch(()=>posterSwap(v))}else v.pause()});slides.forEach((s,i)=>s.classList.toggle('is-active',i===idx));dots.forEach((d,i)=>d.classList.toggle('is-active',i===idx))}
       const start=[0,.34,.67][idx], lp=clamp((p-start)/.33);
       const card=slides[idx].querySelector('.hero__card');
       card.style.setProperty('--s',(.82+lp*.28).toFixed(3));

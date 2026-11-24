@@ -1,31 +1,20 @@
-/* Data + product carousels + showcase */
-const BEST = [
-  ['Sculpted Hoop Earrings','$185',1191531,1458867],['Signet Chain Ring','$142',248077,265906],
-  ['Rope Chain Necklace','$260',1454171,1721943],['Link Bracelet','$198',2735970,3266700],
-  ['Pearl Drop Earrings','$164',2697786,3641059],['Coin Pendant','$230',994234,1413420]];
-const NEWP = [
-  ['Spiral Dome Ring','$210',3266700,248077],['Braided Ring Pendant','$275',1413420,1454171],
-  ['Lace Flower Studs','$160',1458867,1191531],['Molten Earrings','$240',265906,2735970],
-  ['Wave Cuff','$320',3641059,2697786],['Organic Hoop','$190',1721943,994234]];
+/* Home page: product carousels (from the shared catalog) + category showcase */
 const CATS = [['Hoops',1191531,1458867],['Necklaces',1454171,1721943],['Bracelets',2735970,3266700],['Rings',248077,265906],['Earrings',2697786,3641059],['Pendants',994234,1413420]];
 
 function cardImgs(a,b){return `<img src="${PX(a)}" alt="" loading="lazy" draggable="false"><img src="${PX(b)}" alt="" loading="lazy" draggable="false">`}
 
 function buildProducts(){
   document.querySelectorAll('[data-products]').forEach(track=>{
-    const isNew = track.dataset.products==='new';
-    track.innerHTML = (isNew?NEWP:BEST).map(([n,p,a,b],i)=>`
-      <article class="pcard"><div class="pcard__img">${isNew?'<span class="tag">NEW</span>':''}${cardImgs(a,b)}
-      <button type="button" class="pcard__qv" data-qv data-set="${isNew?'new':'best'}" data-i="${i}">Quick view</button>
-      <button type="button" class="pcard__add" aria-label="Add ${n} to bag" data-name="${n}"><i data-lucide="shopping-bag"></i></button></div>
-      <h3>${n}</h3><p>${p}</p></article>`).join('');
-    const sec = track.closest('.products');
-    const [prev,next] = sec.querySelectorAll('.arrows button');
-    const step = ()=> track.querySelector('.pcard').offsetWidth;
-    const upd = ()=>{prev.disabled = track.scrollLeft<4; next.disabled = track.scrollLeft+track.clientWidth>=track.scrollWidth-4};
+    const isNew=track.dataset.products==='new';
+    const list=CATALOG.filter(p=>isNew?p.isNew:p.isBest).slice(0,8);
+    track.innerHTML=list.map((p,i)=>renderCard(p,i)).join('');
+    const sec=track.closest('.products');
+    const [prev,next]=sec.querySelectorAll('.arrows button');
+    const step=()=>track.querySelector('.pcard').offsetWidth;
+    const upd=()=>{prev.disabled=track.scrollLeft<4;next.disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-4};
     prev.onclick=()=>track.scrollBy({left:-step()});
     next.onclick=()=>track.scrollBy({left:step()});
-    track.addEventListener('scroll',upd,{passive:true}); window.addEventListener('resize',upd); upd();
+    track.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
   });
 }
 

@@ -102,6 +102,7 @@
   });
 
   /* ---------- render ---------- */
+  const PAGE=12;let shown=PAGE,current=[];
   function title(){
     if(S.q)return[`Results for “${S.q}”`,'Search the full VELORA catalog.'];
     if(S.flag==='best'&&S.cat==='All')return['Best Sellers','The pieces our community reaches for most.'];
@@ -111,27 +112,33 @@
     if(S.metals.size===1)return[[...S.metals][0],'Crafted from certified recycled metals.'];
     return['All Jewelry','Handcrafted pieces designed to complement your daily look.'];
   }
-  function card(p,i){
-    const tag=p.isNew?'<span class="tag">NEW</span>':p.isBest?'<span class="tag tag--best">BEST SELLER</span>':'';
-    return `<article class="pcard" style="--i:${Math.min(i,12)}"><div class="pcard__img">${tag}
-      <img src="${PX(p.imgs[0],800)}" alt="${p.name}" loading="lazy"><img src="${PX(p.imgs[1],800)}" alt="" loading="lazy">
-</div>
-      <h3>${p.name}</h3><p>${money(p.price)}</p><span class="pcard__meta">${p.metal}</span>
-      <div class="pcard__actions">
-        <button type="button" class="cact cact--qv" data-pid="${p.id}" aria-label="Quick view ${p.name}">Quick view</button>
-        <button type="button" class="cact cact--add" data-add data-name="${p.name}" aria-label="Add ${p.name} to bag">Add to bag</button>
-      </div></article>`;
+  const batch=(from,to)=>current.slice(from,to).map((p,k)=>renderCard(p,k)).join('');
+  function paintMore(){
+    const n=current.length,s=Math.min(shown,n);
+    $('cMore').hidden=n===0;
+    $('cMoreFill').style.transform=`scaleX(${n?(s/n).toFixed(3):0})`;
+    $('cMoreTxt').textContent=`Showing ${s} of ${n} pieces`;
+    const btn=$('cMoreBtn');btn.hidden=s>=n;btn.textContent=`Load More Pieces (${s} of ${n})`;
   }
   function update(){
-    const list=filtered(),n=list.length,ac=activeCount();
-    grid.innerHTML=list.map(card).join('');
+    current=filtered();shown=PAGE;
+    const n=current.length,ac=activeCount();
+    grid.innerHTML=batch(0,shown);
     $('cEmpty').hidden=n>0;
     $('cCount').textContent=`${n} ${n===1?'piece':'pieces'}`;
     $('fApply').textContent=n?`Show ${n} ${n===1?'piece':'pieces'}`:'No pieces — adjust filters';
     const b=$('fBadge');b.textContent=ac;b.hidden=ac===0;
     const [t,s]=title();$('cTitle').textContent=t;$('cSub').textContent=s;document.title=`${t} — VELORA`;
-    chips();syncControls();writeURL();lucide.createIcons();
+    chips();syncControls();writeURL();paintMore();lucide.createIcons();
   }
+  $('cMoreBtn').onclick=()=>{
+    const from=shown;shown=Math.min(shown+PAGE,current.length);
+    grid.insertAdjacentHTML('beforeend',batch(from,shown));paintMore();lucide.createIcons();
+  };
+  document.querySelectorAll('.cview button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.cview button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+    grid.classList.toggle('cgrid--dense',b.dataset.view==='4');
+  }));
 
   /* ---------- filter drawer (<=1024px): bottom sheet on phones, side sheet on tablets ---------- */
   const desktop=matchMedia('(min-width:1025px)');let lastFocus=null;

@@ -16,7 +16,7 @@ const CATALOG=(()=>{
   CATEGORIES.forEach(cat=>NAMES[cat].forEach(([name,type])=>{
     const metal=/pearl/i.test(name)||i%7===3?METALS[3]:METALS[(i*2+(i>>2))%3];
     out.push({id:'v'+String(i+1).padStart(3,'0'),name,type,category:cat,metal,edit:EDITS[(i*5+(i>>2))%6],
-      price:Math.round((base[cat]+((i*37)%14)*14)/5)*5,isBest:i%4===0||i%9===2,isNew:i%5===1||i%11===7,date:(i*13)%56,
+      price:Math.round((base[cat]+((i*37)%14)*14)/5)*5,isBest:i%4===0||i%9===2,isNew:i%5===1||i%11===7,date:(i*13)%56,rating:+(4.5+((i*7)%6)/10).toFixed(1),reviews:12+((i*29)%160),status:i%13===5?'soldout':i%17===8?'preorder':'',defFinish:metal==='Sterling Silver'?'Silver':'Gold',
       imgs:[POOL[(i*5)%12],POOL[(i*5+7)%12]]});
     i++;
   }));

@@ -10,6 +10,12 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div id="velora-preloader" role="status" aria-label="Loading VELORA">
+  <div class="pl__word" aria-hidden="true"><span class="pl__ch" style="--k:0"><span>V</span></span><span class="pl__ch" style="--k:1"><span>E</span></span><span class="pl__ch" style="--k:2"><span>L</span></span><span class="pl__ch" style="--k:3"><span>O</span></span><span class="pl__ch" style="--k:4"><span>R</span></span><span class="pl__ch" style="--k:5"><span>A</span></span></div>
+  <div class="pl__line" aria-hidden="true"></div>
+  <p class="pl__sub" aria-hidden="true">Fine Jewelry</p>
+</div>
+<noscript><style>#velora-preloader{display:none!important}</style></noscript>
 
 <!-- 1. HEADER -->
 <header class="header" id="header">
@@ -31,6 +37,7 @@
     </nav>
     <div class="bar__right">
       <button id="searchBtn" aria-label="Search" aria-expanded="false" aria-controls="searchPanel"><i data-lucide="search"></i></button>
+      <a href="#" class="wish" id="wishBtn" aria-label="Wishlist"><i data-lucide="heart"></i><span id="wishCount">0</span></a>
       <a href="#" aria-label="Account"><i data-lucide="user"></i></a>
       <a href="#" class="bag" aria-label="Bag"><i data-lucide="shopping-bag"></i><span id="bagCount">0</span></a>
     </div>
@@ -52,7 +59,7 @@
 </aside>
 
 <div class="page" id="page">
-<!-- 2. HERO -->
+<!-- 1. HERO -->
 <section class="hero" id="hero">
   <div class="hero__stage">
     <div class="hero__slide is-active" data-slide="0">
@@ -77,30 +84,40 @@
   </div>
 </section>
 
-<!-- 3. QUOTE -->
-<section class="quote" id="about">
-  <p>“Life is <span class="quote__img"><img src="https://images.pexels.com/photos/1191531/pexels-photo-1191531.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hoop jewelry"></span> too short to wear ordinary <span class="quote__img"><img src="https://images.pexels.com/photos/1458867/pexels-photo-1458867.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Drop earrings"></span> jewelry”</p>
+<!-- 2. TRUST BAR -->
+<section class="trust" aria-label="Why VELORA">
+  <ul class="trust__list">
+    <li><i data-lucide="recycle"></i><div><h3>Ethically Recycled Gold</h3><p>Certified recycled metals, traced to source</p></div></li>
+    <li><i data-lucide="gem"></i><div><h3>Hand-Finished Details</h3><p>Polished and checked by hand in Athens</p></div></li>
+    <li><i data-lucide="shield-check"></i><div><h3>2-Year Quality Guarantee</h3><p>Every piece hallmarked and warrantied</p></div></li>
+    <li><i data-lucide="package"></i><div><h3>Sustainably Packaged</h3><p>Recycled boxes, zero single-use plastic</p></div></li>
+  </ul>
 </section>
 
-<!-- 4. CATEGORY SHOWCASE -->
+<!-- 3. CATEGORY SHOWCASE -->
 <section class="showcase" id="collections">
-  <div class="showcase__head"><h2 class="showcase__title">Explore The Edit</h2><p class="showcase__sub">Handcrafted pieces designed to complement your daily look</p></div>
+  <div class="showcase__head"><div><h2 class="showcase__title">Explore The Edit</h2><p class="showcase__sub">Handcrafted pieces designed to complement your daily look</p></div><a class="shopall" href="collection.html">Shop All Categories <i data-lucide="arrow-right"></i></a></div>
   <div class="category-scroll-area"><div class="showcase__track category-track" id="showcase"></div></div>
   <div class="drag-cursor" id="dragCursor" aria-hidden="true">Drag</div>
 </section>
 
-<!-- 5. PARALLAX BANNERS -->
+<!-- 4. QUOTE -->
+<section class="quote" id="about">
+  <p>“Life is <span class="quote__img"><img src="https://images.pexels.com/photos/1191531/pexels-photo-1191531.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hoop jewelry"></span> too short to wear ordinary <span class="quote__img"><img src="https://images.pexels.com/photos/1458867/pexels-photo-1458867.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Drop earrings"></span> jewelry”</p>
+</section>
+
+<!-- 5. BEST SELLERS -->
+<section class="products" id="best">
+  <div class="products__head"><h2>Best Sellers</h2><div class="products__tools"><div class="arrows"><button data-dir="-1" aria-label="Previous"><i data-lucide="arrow-left"></i></button><button data-dir="1" aria-label="Next"><i data-lucide="arrow-right"></i></button></div><a class="shopall" href="collection.html?flag=best">Shop All <i data-lucide="arrow-right"></i></a></div></div>
+  <div class="products__track" data-products="best"></div>
+</section>
+
+<!-- 6. PARALLAX BANNERS -->
 <section class="parallax" id="parallax">
   <div class="parallax__stage">
     <article class="pbanner"><img class="pbanner__bg" src="https://images.pexels.com/photos/3912476/pexels-photo-3912476.jpeg?auto=compress&cs=tinysrgb&w=1600" alt=""><div class="pbanner__shade"></div><div class="pbanner__copy"><h2>Adapt Collection</h2><p>Fluid silhouettes and adjustable fits.</p><a class="btn btn--white" href="collection.html?edit=Adapt">Shop now</a></div></article>
     <article class="pbanner"><img class="pbanner__bg" src="https://images.pexels.com/photos/3094215/pexels-photo-3094215.jpeg?auto=compress&cs=tinysrgb&w=1600" alt=""><div class="pbanner__shade"></div><div class="pbanner__copy"><h2>Poise Collection</h2><p>Minimal lines, bold intent. Made for self-expression.</p><a class="btn btn--white" href="collection.html?edit=Poise">Shop now</a></div></article>
   </div>
-</section>
-
-<!-- 6. BEST SELLERS -->
-<section class="products" id="best">
-  <div class="products__head"><h2>Best Sellers</h2><div class="products__tools"><div class="arrows"><button data-dir="-1" aria-label="Previous"><i data-lucide="arrow-left"></i></button><button data-dir="1" aria-label="Next"><i data-lucide="arrow-right"></i></button></div><a class="shopall" href="collection.html?flag=best">Shop All <i data-lucide="arrow-right"></i></a></div></div>
-  <div class="products__track" data-products="best"></div>
 </section>
 
 <!-- 7. MARQUEE -->
@@ -117,32 +134,36 @@
   <a class="tcard" href="collection.html?cat=Earrings&amp;type=Hoops"><img src="https://images.pexels.com/photos/2697786/pexels-photo-2697786.jpeg?auto=compress&cs=tinysrgb&w=1200" alt=""><div class="tcard__copy"><small>Earrings</small><h3>Entelechy</h3><span class="btn btn--white">Shop now</span></div></a>
 </section>
 
-<!-- 9. SPLITS + REVERSE MARQUEE -->
+<!-- 9. LTR SPLIT -->
 <section class="split">
   <div class="split__img"><img src="https://images.pexels.com/photos/3361481/pexels-photo-3361481.jpeg?auto=compress&cs=tinysrgb&w=1600" alt=""></div>
   <div class="split__panel"><img class="split__accent" src="https://images.pexels.com/photos/248077/pexels-photo-248077.jpeg?auto=compress&cs=tinysrgb&w=400" alt=""><small>Exclusive Capsule</small><h2>Inspired by a muse</h2><p>Inspired by a muse of timeless grace. A limited edition of sculpted gold.</p><a class="btn btn--gold" href="collection.html?edit=Limited%20Edition">Shop exclusive</a></div>
 </section>
+
+<!-- 10. REVERSE MARQUEE -->
 <div class="marquee marquee--gold marquee--rtl">
   <div class="marquee__group">
     <span>Athens, GR</span><i data-lucide="leaf"></i><span>Velora</span><i data-lucide="flower-2"></i><span>Hand-crafted jewellery</span><i data-lucide="sprout"></i>
   </div>
 </div>
-<section class="split split--rev">
-  <div class="split__panel"><img class="split__accent" src="https://images.pexels.com/photos/1413420/pexels-photo-1413420.jpeg?auto=compress&cs=tinysrgb&w=400" alt=""><small>Now open</small><h2>London</h2><p>Discover our full collection, explore new arrivals, and experience exclusive in-store moments — from curated capsule collections to private styling.</p><div class="split__btns"><a class="btn btn--gold" href="#">Visit us</a><a class="btn btn--ghost" href="#">Book an appointment</a></div></div>
-  <div class="split__img"><img src="https://images.pexels.com/photos/5370706/pexels-photo-5370706.jpeg?auto=compress&cs=tinysrgb&w=1600" alt=""></div>
-</section>
 
-<!-- 10. NEW ARRIVALS -->
+<!-- 11. NEW ARRIVALS -->
 <section class="products" id="new">
   <div class="products__head"><h2>New Arrivals</h2><div class="products__tools"><div class="arrows"><button data-dir="-1" aria-label="Previous"><i data-lucide="arrow-left"></i></button><button data-dir="1" aria-label="Next"><i data-lucide="arrow-right"></i></button></div><a class="shopall" href="collection.html?flag=new">Shop All <i data-lucide="arrow-right"></i></a></div></div>
   <div class="products__track" data-products="new"></div>
 </section>
 
-<!-- 11. REVIEWS -->
+<!-- 12. RTL SPLIT -->
+<section class="split split--rev">
+  <div class="split__panel"><img class="split__accent" src="https://images.pexels.com/photos/1413420/pexels-photo-1413420.jpeg?auto=compress&cs=tinysrgb&w=400" alt=""><small>Now open</small><h2>London</h2><p>Discover our full collection, explore new arrivals, and experience exclusive in-store moments — from curated capsule collections to private styling.</p><div class="split__btns"><a class="btn btn--gold" href="#">Visit us</a><a class="btn btn--ghost" href="#">Book an appointment</a></div></div>
+  <div class="split__img"><img src="https://images.pexels.com/photos/5370706/pexels-photo-5370706.jpeg?auto=compress&cs=tinysrgb&w=1600" alt=""></div>
+</section>
+
+<!-- 13. REVIEWS -->
 <section class="reviews" id="reviews">
   <div class="reviews__track" id="reviewsTrack">
     <div class="reviews__stage">
-      <div class="reviews__head"><span class="eyebrow">Customer reviews</span><h2>Loved by those who wear it</h2><p class="reviews__sub"><span class="rcard__stars">★★★★★</span> 4.9 average from over 2,000 verified reviews</p></div>
+      <div class="reviews__head"><span class="eyebrow">Customer reviews</span><h2>Loved by those who wear it</h2><div class="reviews__badge"><span class="rcard__stars" aria-hidden="true">★★★★★</span><strong>Rated 4.9/5</strong><span>from over 1,200+ verified buyers</span></div></div>
       <div class="reviews__collage">
       <article class="rcard rcard--sophia" style="--dx:0px;--dy:70px" data-s="0" data-e="0.12">
         <img src="https://images.pexels.com/photos/1454171/pexels-photo-1454171.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="" loading="lazy">
@@ -177,7 +198,7 @@
   </div>
 </section>
 
-<!-- 12. INSTAGRAM -->
+<!-- 14. INSTAGRAM -->
 <section class="social-sec" id="social">
   <div class="social-sec__head">
     <a class="social-sec__badge" href="#"><i data-lucide="instagram"></i> @VELORAJEWELRY</a>
@@ -186,7 +207,7 @@
   <div class="igrid" id="igrid"></div>
 </section>
 
-<!-- 13. FOOTER -->
+<!-- 15. FOOTER -->
 <footer class="footer" id="footer">
   <div class="footer__grid">
     <div><h4>Shop</h4><a href="collection.html?flag=best">Best Sellers</a><a href="collection.html?flag=new">New Arrivals</a><a href="collection.html?metal=18k%20Gold%20Vermeil,Recycled%20Gold">Gold</a><a href="collection.html?metal=Sterling%20Silver">Silver</a><a href="collection.html?edit=Resort">Resort Wear</a></div>
@@ -222,6 +243,7 @@
 <div class="toast" id="toast" role="status"></div>
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 <script src="catalog.js"></script>
+<script src="commerce.js"></script>
 <script src="carousel.js"></script>
 <script src="animations.js"></script>
 <script src="header.js"></script>

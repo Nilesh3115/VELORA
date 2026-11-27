@@ -70,22 +70,19 @@
     </div>
   </section>
   <section class="cwrap" id="shop">
-    <div class="ctoolbar">
-      <button type="button" class="ftrigger" id="fTrigger" aria-expanded="false" aria-controls="filterPanel"><span class="ficon" aria-hidden="true"></span>Filters<span class="fbadge" id="fBadge" hidden>0</span></button>
+    <div class="cbar">
+      <div class="cbadges" id="cBadges" role="group" aria-label="Main categories"></div>
+      <button type="button" class="ftrigger" id="fTrigger" aria-expanded="false" aria-controls="filterPanel"><span class="ficon" aria-hidden="true"></span>Filter<span class="fbadge" id="fBadge" hidden>0</span></button>
+    </div>
+    <div class="cmeta">
       <p class="ccount" id="cCount" aria-live="polite">56 pieces</p>
       <div class="cview" role="group" aria-label="Grid view">
-        <button type="button" data-view="2" aria-pressed="true" aria-label="2-column editorial view" title="2-Column Editorial View"><i data-lucide="columns-2"></i></button>
-        <button type="button" data-view="4" aria-pressed="false" aria-label="4-column dense grid view" title="4-Column Dense Grid View"><i data-lucide="layout-grid"></i></button>
+        <button type="button" data-view="3" aria-pressed="false" aria-label="3-column editorial view" title="3-Column Editorial View"><i data-lucide="columns-3"></i></button>
+        <button type="button" data-view="4" aria-pressed="true" aria-label="4-column dense grid view" title="4-Column Dense Grid View"><i data-lucide="layout-grid"></i></button>
       </div>
-      <label class="csort"><span>Sort</span>
-        <select id="cSort" aria-label="Sort products"><option value="featured">Featured</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option><option value="newest">Newest</option></select>
-      </label>
     </div>
     <div class="cchips" id="cChips"></div>
-    <div class="clayout" id="cLayout">
-      <aside class="fpanel" id="filterPanel" aria-label="Filters"></aside>
-      <div class="cgrid" id="cGrid" aria-live="polite"></div>
-    </div>
+    <div class="cgrid" id="cGrid" aria-live="polite"></div>
     <div class="cempty" id="cEmpty" hidden><h2>No pieces match your selected filters</h2><p>Try removing a filter or two to see more of the collection.</p><button type="button" class="btn btn--gold" id="cEmptyReset">Clear All Filters</button></div>
     <div class="cmore" id="cMore" hidden>
       <p id="cMoreTxt" aria-live="polite"></p>
@@ -129,6 +126,7 @@
 
 <div class="toast" id="toast" role="status"></div>
 <div class="fscrim" id="fScrim"></div>
+<aside class="fpanel" id="filterPanel" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Filters"></aside>
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 <script src="catalog.js"></script>
 <script src="commerce.js"></script>

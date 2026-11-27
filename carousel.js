@@ -14,13 +14,14 @@ function buildProducts(){
     const upd=()=>{prev.disabled=track.scrollLeft<4;next.disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-4};
     prev.onclick=()=>track.scrollBy({left:-step()});
     next.onclick=()=>track.scrollBy({left:step()});
-    track.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
+    track.addEventListener('scroll',()=>{if(track.scrollTop)track.scrollTop=0;upd()},{passive:true});window.addEventListener('resize',upd);upd();
   });
 }
 
 function buildShowcase(){
   const t=document.getElementById('showcase'),area=t.closest('.category-scroll-area');
   t.innerHTML = CATS.map(([n,a,b])=>`<div class="ccard">${cardImgs(a,b)}<span>${n}</span></div>`).join('');
+  t.addEventListener('scroll',()=>{if(t.scrollTop)t.scrollTop=0},{passive:true});
   const cur=document.getElementById('dragCursor');
   let down=false,sx=0,sl=0,x=0,y=0,cx=0,cy=0,cs=0,inside=false,seen=false;
   const hide=()=>{inside=false;cur.style.opacity=0};

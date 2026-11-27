@@ -1,12 +1,14 @@
 /* Shared: preloader, media fallbacks, toast, newsletter, wordmark fit */
 (function(){
-  const p=document.getElementById('velora-preloader');if(!p)return;
+  const p=document.getElementById('velora-preloader'),root=document.documentElement;
+  if(!p){root.classList.add('is-ready');return}
+  setTimeout(()=>root.classList.add('is-ready'),4600);
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,minShow=reduced?350:1900,t0=performance.now();
   let gone=false;
   function hide(){
     if(gone)return;gone=true;
     const wait=Math.max(0,minShow-(performance.now()-t0));          // let the A settle first
-    setTimeout(()=>{p.classList.add('is-done');setTimeout(()=>p.remove(),1300)},wait);
+    setTimeout(()=>{p.classList.add('is-done');root.classList.add('is-ready');setTimeout(()=>p.remove(),1300)},wait);
   }
   if(document.readyState==='complete')hide();else addEventListener('load',hide);
   setTimeout(hide,3200);                                             // safe maximum if external media is slow

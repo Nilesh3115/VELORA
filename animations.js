@@ -1,9 +1,38 @@
 /* Reveals, parallax, marquee, wordmark */
+function splitWords(el){
+  const walk=node=>[...node.childNodes].forEach(n=>{
+    if(n.nodeType===3){
+      const frag=document.createDocumentFragment();
+      n.textContent.split(/(\s+)/).forEach(tok=>{
+        if(!tok)return;
+        if(/^\s+$/.test(tok)){frag.appendChild(document.createTextNode(' '));return}
+        const o=document.createElement('span'),i=document.createElement('span');
+        o.className='rw';i.className='rw__i';i.style.setProperty('--w',el._w=(el._w||0)+1);i.textContent=tok;o.appendChild(i);frag.appendChild(o);
+      });
+      n.replaceWith(frag);
+    }else if(n.nodeType===1&&n.tagName!=='IMG'&&!n.classList.contains('quote__img'))walk(n);
+  });
+  walk(el);el.classList.add('has-words');
+}
 function initReveal(){
-  const els=document.querySelectorAll('.quote p,.showcase__head,.products__head,.tcard,.split__panel,.footer__grid');
-  els.forEach(e=>e.classList.add('reveal'));
-  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.15});
-  els.forEach(e=>io.observe(e));
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+  const show=el=>reduce?el.classList.add('in'):io.observe(el);
+  // every homepage heading: word-by-word masked reveal
+  document.querySelectorAll('.hero h1,.showcase__title,.quote p,.products h2,.pbanner h2,.tcard h3,.split h2,.reviews__head h2,.social-sec h2').forEach(h=>{
+    splitWords(h);
+    if(!h.closest('.hero'))show(h);                 // hero words are driven by the active slide
+  });
+  // images + supporting copy: staggered fade-up
+  ['.showcase__sub,.showcase__head .shopall','.ccard','.quote__img img','.products__tools','.products .pcard','.pbanner p,.pbanner .btn','.tcard','.split__img','.split__panel > :not(h2)','.reviews__head .eyebrow,.reviews__badge','.social-sec__badge','.igtile','.trust__list li']
+  .forEach(sel=>{
+    const count=new Map();
+    document.querySelectorAll(sel).forEach(el=>{
+      const k=el.parentElement,n=count.get(k)||0;count.set(k,n+1);
+      el.classList.add('fu');el.style.setProperty('--d',Math.min(n,6));show(el);
+    });
+  });
+  document.querySelectorAll('.footer__grid').forEach(e=>{e.classList.add('reveal');show(e)});
 }
 function initMarquees(){
   document.querySelectorAll('.marquee').forEach(m=>{

@@ -34,7 +34,7 @@
           <button type="button" class="qv__wish" data-wish="${p.id}" aria-pressed="${wished}" aria-label="${wished?'Remove from wishlist':'Add to wishlist'}"><i data-lucide="heart"></i></button></div>
         <h2 class="qv__title" id="qvTitle">${p.name}</h2>
         <div class="qv__rating" aria-label="Rated ${p.rating} out of 5"><span class="stars" style="--p:${p.rating/5*100}%" aria-hidden="true">★★★★★</span><span>${p.rating} · ${p.reviews} reviews</span></div>
-        <div class="qv__price">$${p.price}</div>
+        <div class="qv__price"><span>$${p.price}</span><s class="price__was">$${p.was}</s><em class="price__off">${p.off}% off</em></div>
         <p class="qv__blurb">Cast by hand in small batches and finished to a warm mirror polish. Made to layer, stack and be worn every day.</p>
         <div class="qv__label">Finish <em id="qvFinish">${FIN_NAME[p.defFinish]}</em></div>
         <div class="qv__opts" id="qvFinishOpts" role="group" aria-label="Finish">${Object.entries(FIN).map(([f,col])=>`<button type="button" data-f="${f}" aria-pressed="${f===p.defFinish}"><span class="qv__sw" style="background:${col}"></span>${FIN_NAME[f]}</button>`).join('')}</div>

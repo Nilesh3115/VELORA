@@ -15,21 +15,29 @@ function statusTag(p){
   if(p.isBest)return['BEST SELLER','tag--best'];
   return null;
 }
+function eyebrowFor(p){
+  if(p.status==='soldout')return 'Sold out';
+  if(p.status==='preorder')return 'Pre-order';
+  if(p.isNew)return 'New';
+  if(p.isBest)return 'Best seller';
+  return p.metal;
+}
 function renderCard(p,i=0){
-  const t=statusTag(p),wished=Commerce.isWished(p.id);
-  const sw=Object.keys(FIN).map(f=>`<button type="button" class="sw" data-finish="${f}" aria-label="${FIN_NAME[f]}" aria-pressed="${f===p.defFinish}" title="${FIN_NAME[f]}" style="--c:${FIN[f]}"></button>`).join('');
-  const addText=p.status==='soldout'?'Sold out':p.status==='preorder'?'Pre-order':'Add to bag';
-  return `<article class="pcard${p.status==='soldout'?' pcard--out':''}" data-id="${p.id}" style="--i:${Math.min(i,12)}">
-    <div class="pcard__img">${t?`<span class="tag ${t[1]}">${t[0]}</span>`:''}
-      <button type="button" class="pcard__wish" data-wish="${p.id}" aria-pressed="${wished}" aria-label="${wished?'Remove from wishlist':'Add to wishlist'}"><i data-lucide="heart"></i></button>
-      <img src="${PX(p.imgs[0],800)}" alt="${p.name}" loading="lazy" draggable="false"><img src="${PX(p.imgs[1],800)}" alt="" loading="lazy" draggable="false"></div>
-    <h3>${p.name}</h3>
-    <div class="pcard__rate" aria-label="Rated ${p.rating} out of 5, ${p.reviews} reviews"><span class="stars" style="--p:${p.rating/5*100}%" aria-hidden="true">★★★★★</span><span>(${p.reviews})</span></div>
-    <p class="price">$${p.price}</p>
-    <div class="swatches" role="group" aria-label="Finish">${sw}</div>
-    <div class="pcard__actions">
-      <button type="button" class="cact cact--qv" data-pid="${p.id}" aria-label="Quick view ${p.name}">Quick view</button>
-      <button type="button" class="cact cact--add" data-add="${p.id}" ${p.status==='soldout'?'disabled':''} aria-label="${addText} ${p.name}">${addText}</button>
+  const wished=Commerce.isWished(p.id),out=p.status==='soldout';
+  const addLabel=out?'Sold out':p.status==='preorder'?'Pre-order':'Add to Bag';
+  return `<article class="pcard${out?' pcard--out':''}" data-id="${p.id}" style="--i:${Math.min(i,12)}">
+    <div class="pcard__img">
+      <img src="${PX(p.imgs[0],800)}" alt="${p.name}" loading="lazy" draggable="false"><img src="${PX(p.imgs[1],800)}" alt="" loading="lazy" draggable="false">
+      <div class="pcard__tools">
+        <button type="button" class="pcard__tool pcard__tool--eye" data-pid="${p.id}" aria-label="Quick view ${p.name}" title="Quick view"><i data-lucide="eye"></i></button>
+        <button type="button" class="pcard__tool pcard__tool--heart" data-wish="${p.id}" aria-pressed="${wished}" aria-label="${wished?'Remove from wishlist':'Add to wishlist'}" title="Wishlist"><i data-lucide="heart"></i></button>
+      </div>
+      <div class="pcard__bar"><button type="button" class="pcard__addbar" data-add="${p.id}" ${out?'disabled':''} aria-label="${addLabel} ${p.name}">${out?'':'<i data-lucide="shopping-bag"></i>'}${addLabel}</button></div>
+    </div>
+    <div class="pcard__meta">
+      <span class="pcard__eyebrow">${eyebrowFor(p)}</span>
+      <h3>${p.name}</h3>
+      <p class="price"><span class="price__now">$${p.price}</span><s class="price__was" aria-label="Original price $${p.was}">$${p.was}</s></p>
     </div></article>`;
 }
 
